@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Currency;
 
 public record DealRequestDto(
-        @NotNull String   id,
+        @NotNull String id,
         @NotNull Currency fromCurrency,
         @NotNull Currency toCurrency,
         @NotNull LocalDateTime timestamp,

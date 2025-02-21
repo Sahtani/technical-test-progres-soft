@@ -19,7 +19,6 @@ import java.util.Currency;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Deal {
     @Id
     private String id;

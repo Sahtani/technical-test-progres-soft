@@ -13,7 +13,7 @@ services:
 
   app:
     build: .
-    container_name: fx-deal-importer
+    container_name: fx-deal
     depends_on:
       - database
     environment:

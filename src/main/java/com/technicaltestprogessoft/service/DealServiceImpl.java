@@ -6,20 +6,24 @@ import com.technicaltestprogessoft.entity.Deal;
 import com.technicaltestprogessoft.exception.DealAlreadyExistsException;
 import com.technicaltestprogessoft.mapper.DealMapper;
 import com.technicaltestprogessoft.repository.DealRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class DealServiceImpl implements DealService {
 
     private final DealRepository dealRepository;
     private final DealMapper dealMapper;
+
+    public DealServiceImpl(DealRepository dealRepository, DealMapper dealMapper) {
+        this.dealRepository = dealRepository;
+        this.dealMapper = dealMapper;
+    }
+
     @Override
     public DealResponseDto createDeal(DealRequestDto dealRequestDto) {
-        log.info("Attempting to save deal with ID: {}", dealRequestDto.id());
+        log.info("Attempting to create deal with ID: {}", dealRequestDto.id());
 
         if (dealRepository.existsById(dealRequestDto.id())) {
             log.warn("Duplicate deal ID detected: {}. Operation aborted.", dealRequestDto.id());
@@ -27,7 +31,7 @@ public class DealServiceImpl implements DealService {
         }
 
         Deal savedDeal = dealRepository.save(dealMapper.toEntity(dealRequestDto));
-        log.info("Deal saved successfully with ID: {}", savedDeal.getId());
+        log.info("Deal created successfully with ID: {}", savedDeal.getId());
 
         return dealMapper.toResponseEntity(savedDeal);
     }
