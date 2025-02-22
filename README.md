@@ -1,6 +1,7 @@
 # **Technical Test ProgresSoft**
 
-## **Overview**
+
+## 🔍 Overview
 This project is a **Spring Boot** application designed to manage deals efficiently.
 
 ---
