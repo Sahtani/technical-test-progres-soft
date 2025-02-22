@@ -62,7 +62,7 @@ POST /api/deals
 Content-Type: application/json
 
 Request Body:
-
+```sh
 {
   "id": "DR123456",
   "fromCurrency": "USD",
@@ -70,8 +70,9 @@ Request Body:
   "timestamp": "2024-01-01T10:00:00Z",
   "amount": 1000000.00
 }
+```
 Response:
-
+```sh
 {
   "id": "DR123456",
   "fromCurrency": "USD",
@@ -79,8 +80,10 @@ Response:
   "timestamp": "2024-01-01T10:00:00Z",
   "amount": 1000000.00
 }
+```
 📂 Project Structure
-technicalTest/
+```sh
+technicalTestprogressoft/
 ├── src/
 │   ├── main/
 │   │   ├── java/
@@ -98,4 +101,4 @@ technicalTest/
 ├── Dockerfile
 └── docker-compose.yml 
 └── Makefile
-
+```
