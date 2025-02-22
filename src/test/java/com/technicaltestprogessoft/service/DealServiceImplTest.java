@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
@@ -65,16 +64,13 @@ class DealServiceImplTest {
 
     @Test
     void createDeal_ShouldReturnDealResponseDto_WhenDealDoesNotExist() {
-        // Arrange
         when(dealRepository.existsById(dealRequestDto.id())).thenReturn(false);
         when(dealMapper.toEntity(dealRequestDto)).thenReturn(deal);
         when(dealRepository.save(deal)).thenReturn(deal);
         when(dealMapper.toResponseEntity(deal)).thenReturn(dealResponseDto);
 
-        // Act
         DealResponseDto result = dealService.createDeal(dealRequestDto);
 
-        // Assert
         assertNotNull(result);
         assertEquals(dealRequestDto.id(), result.id());
         verify(dealRepository, times(1)).save(deal);
@@ -82,10 +78,8 @@ class DealServiceImplTest {
 
     @Test
     void createDeal_ShouldThrowDealAlreadyExistsException_WhenDealExists() {
-        // Arrange
         when(dealRepository.existsById(dealRequestDto.id())).thenReturn(true);
 
-        // Act & Assert
         assertThrows(DealAlreadyExistsException.class, () -> dealService.createDeal(dealRequestDto));
 
         verify(dealRepository, never()).save(any(Deal.class));

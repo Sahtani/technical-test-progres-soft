@@ -8,10 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class DealMapper {
 
-    // Convert DealRequestDto to Deal entity
     public Deal toEntity(DealRequestDto dealRequestDto) {
         Deal deal = new Deal();
-        deal.setId(dealRequestDto.id()); // Manually set the ID
+        deal.setId(dealRequestDto.id());
         deal.setFromCurrency(dealRequestDto.fromCurrency());
         deal.setToCurrency(dealRequestDto.toCurrency());
         deal.setTimestamp(dealRequestDto.timestamp());
@@ -19,7 +18,6 @@ public class DealMapper {
         return deal;
     }
 
-    // Convert Deal entity to DealResponseDto
     public DealResponseDto toResponseEntity(Deal deal) {
         return new DealResponseDto(
                 deal.getId(),

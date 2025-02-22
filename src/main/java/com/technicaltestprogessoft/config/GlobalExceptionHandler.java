@@ -16,7 +16,6 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Handle validation errors
     @ExceptionHandler({MethodArgumentNotValidException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleValidationExceptions(final MethodArgumentNotValidException ex, WebRequest request) {
@@ -35,8 +34,6 @@ public class GlobalExceptionHandler {
         );
     }
 
-
-    // Handle DealAlreadyExistsException
     @ExceptionHandler({DealAlreadyExistsException.class})
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorResponse handleDealAlreadyExistsException(DealAlreadyExistsException ex, WebRequest request) {
@@ -49,7 +46,6 @@ public class GlobalExceptionHandler {
         );
     }
 
-    // Handle generic exceptions
     @ExceptionHandler({Exception.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleGenericException(Exception ex, WebRequest request) {

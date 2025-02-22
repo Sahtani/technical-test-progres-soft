@@ -9,10 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
@@ -25,7 +23,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
 
 public class DealControllerTest {
 
@@ -72,11 +69,9 @@ public class DealControllerTest {
 
     @Test
     void givenAlreadyExistingDealId_whenCreateDeal_thenThrowDealAlreadyExistsException() {
-        // Arrange
         given(dealService.createDeal(any(DealRequestDto.class)))
                 .willThrow(new DealAlreadyExistsException("Deal id already exists"));
 
-        // Act & Assert
         assertThatExceptionOfType(DealAlreadyExistsException.class)
                 .isThrownBy(() -> dealController.save(dealRequestDto))
                 .withMessage("Deal id already exists");
